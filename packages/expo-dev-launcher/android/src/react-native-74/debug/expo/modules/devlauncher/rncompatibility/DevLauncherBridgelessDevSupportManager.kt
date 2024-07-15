@@ -23,7 +23,7 @@ class DevLauncherBridgelessDevSupportManager(
     injectDevServerHelper(context, this, controller)
   }
 
-  override fun showNewJavaError(message: String?, e: Throwable) {
+  override fun showNewJavaError(message: String?, e: Throwable?) {
     Log.e("DevLauncher", "$message", e)
     if (!DevLauncherController.wasInitialized()) {
       Log.e("DevLauncher", "DevLauncher wasn't initialized. Couldn't intercept native error handling.")

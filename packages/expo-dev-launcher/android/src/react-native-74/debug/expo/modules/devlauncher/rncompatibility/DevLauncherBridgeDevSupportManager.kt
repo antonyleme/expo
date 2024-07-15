@@ -35,6 +35,7 @@ class DevLauncherBridgeDevSupportManager(
   minNumShakes,
   customPackagerCommandHandlers,
   null,
+  null,
   null
 ),
   DevLauncherKoinComponent {
@@ -44,7 +45,7 @@ class DevLauncherBridgeDevSupportManager(
     injectDevServerHelper(applicationContext, this, controller)
   }
 
-  override fun showNewJavaError(message: String?, e: Throwable) {
+  override fun showNewJavaError(message: String?, e: Throwable?) {
     Log.e("DevLauncher", "$message", e)
     if (!DevLauncherController.wasInitialized()) {
       Log.e(
@@ -61,7 +62,7 @@ class DevLauncherBridgeDevSupportManager(
     }
 
     controller?.onAppLoadedWithError()
-    val cause: Throwable = if (e is InvocationTargetException) e.cause ?: e else e
+    val cause: Throwable? = if (e is InvocationTargetException) e.cause ?: e else e
     DevLauncherErrorActivity.showError(activity, DevLauncherAppError(message, cause))
   }
 
